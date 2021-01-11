@@ -1,4 +1,4 @@
-# Write your code below game_hash
+require 'pry'
 
 def game_hash
   {
@@ -127,4 +127,96 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(name)
+  game_hash.each do |(key, value)|
+    if game_hash[key] == "Brooklyn Nets" || "Charlotte Hornets"
+      value[:players].find do |e|
+        if e[:player_name] == name
+          return e[:points]
+        end
+      end
+    end
+  end
+end
+
+def shoe_size(name)
+  game_hash.each do |(key, value)|
+    if game_hash[key] == "Brooklyn Nets" || "Charlotte Hornets"
+      value[:players].find do |e|
+        if e[:player_name] == name
+          return e[:shoe]
+        end
+      end
+    end
+  end
+end
+
+def team_colors(team)
+  game_hash.each do |(key, value)|
+    if game_hash[key][:team_name] == team
+      return value[:colors]
+    end
+  end
+end
+
+
+def team_names
+  game_hash.each_with_object([]) do |(key, value), new_arr|
+    new_arr.push(value[:team_name])
+  end
+end
+
+
+def player_numbers(teams_name)
+  game_hash.each do |key, value|
+    if value[:team_name] == teams_name
+         return value[:players].map do |element| element[:number]
+      end
+    end
+  end
+end
+
+
+def team_names
+  game_hash.each_with_object([]) do |(key, value), new_arr|
+    new_arr.push(value[:team_name])
+  end
+end
+
+
+def player_numbers(teams_name)
+  game_hash.each do |key, value|
+    if value[:team_name] == teams_name
+         return value[:players].map do |element| element[:number]
+      end
+    end
+  end
+end
+
+def player_stats(name)
+  game_hash.each do |key, value|
+    value[:players].each do |element|
+      if element[:player_name] == name
+        return element
+      end
+    end
+  end
+end
+
+
+
+def big_shoe_rebounds
+  max_shoe = 0
+  rebounds = 0
+  game_hash.each do |key, value|
+    value[:players].each do |element|
+      element[:shoe]
+        if element[:shoe] > max_shoe
+          max_shoe = element[:shoe]
+          rebounds = element[:rebounds]
+        end
+      end
+    end
+    return rebounds
+  end
+
